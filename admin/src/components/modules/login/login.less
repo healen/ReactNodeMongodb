@@ -1,0 +1,43 @@
+.login{
+	width: 280px;
+	min-height: 180px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-top: -100px;
+	margin-left: -140px;
+	background: #eee;
+	border:1px solid #ddd;
+	border-radius: 5px;
+	padding: 10px 0px;
+	.errorbar{
+		// text-align: center;
+		color: #ff0000;
+		padding-left: 80px;
+	}
+	label{
+		display: block;
+		*zoom:1;
+	    &:after{
+	        content: "\0020"; display: block; height: 0; overflow: hidden; clear:both;
+	    }
+	    .title{
+	    	float: left;
+	    	text-align: right;
+	    	width: 80px;
+	    	line-height: 35px;
+	    	height: 35px;
+	    }
+	    input{
+	    	padding: 0px 5px;
+	    	&[type='text'],&[type='password']{
+	    		height: 35px
+	    	}
+	    }
+	    margin-top: 20px;
+	}
+	h4{
+		text-align: center;
+
+	}
+}
