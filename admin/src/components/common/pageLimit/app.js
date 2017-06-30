@@ -45,7 +45,7 @@ export default class PageLimit extends Component {
                 共 {count} 条数据
             </div>
         )
-        if(pageCount==1){
+        if(pageCount<=1){
             body=(<div>共{count} 条数据</div>)
         }
         return (

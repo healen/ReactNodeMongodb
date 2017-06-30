@@ -1,0 +1,87 @@
+.markBody{
+  height:540px;
+  *zoom:1;
+  &:after{
+    content: "\0020"; display: block; height: 0; overflow: hidden; clear:both;
+  }
+  .editArea{
+    width: 50%;
+    height:100%;
+    float:left;
+    border:1px solid #ddd;
+    textarea{
+      padding:10px;
+      border:none;
+      width:100%;
+      height:100%;
+      resize:none;
+      &:focus{
+        border:none;
+        outline:none;
+      }
+    }
+  }
+  .showArea{
+    border:1px solid #ccc;
+    float:left;
+    width:50%;
+    margin-left:-1px;
+    border-left:1px solid #ccc;
+    background: #f6f6f6;
+    height:100%;
+    overflow-x: auto;
+    .show{
+      padding:10px
+    }
+  }
+}
+.markHead{
+  //padding: 0px 5px;
+
+  .editTool,.markTool{
+    height:40px;
+    background: #fff;
+    color:#999;
+    float: left;
+    width: 50%;
+    border:1px solid #ccc;
+    font-style: 16px;
+    .warp{
+      padding: 0px 5px;
+      .horLine{
+        font-size: 16px;
+        color: #ccc;
+      }
+      a{
+        display: inline-block;
+        color:#999;
+        &:hover{
+          color:#0081FF;
+          background: #eee;
+        }
+      }
+      i{
+        width: 36px;
+        height: 38px;
+        text-align: center;
+        line-height: 38px;
+        display: inline-block;
+        cursor: pointer;
+      }
+    }
+  }
+  .editTool{
+
+  }
+  .markTool{
+    text-align: right;
+    margin-left: -1px;
+
+  }
+
+  *zoom:1;
+  &:after{
+    content: "\0020"; display: block; height: 0; overflow: hidden; clear:both;
+  }
+
+}

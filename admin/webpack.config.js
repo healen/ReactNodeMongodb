@@ -47,7 +47,7 @@ var config = {
                 }]
             },
             {
-                test:/\.(png|jpg|jpeg|gif)/,
+                test:/\.(png|jpg|jpeg|gif|woff|svg|eot|ttf)/,
                 use:[{
                     loader:'url-loader?limit=250000'
                 }]

@@ -117,11 +117,9 @@ Router.post("/addUser",function(req,res){
 		}
 	})
 })
-
 /*
 * 根据id删除用户
 * */
-
 Router.post("/deleteById",function(req,res){
 	var id = req.body.id;
 	Admin.findByIdAndRemove(id,function(err,result){

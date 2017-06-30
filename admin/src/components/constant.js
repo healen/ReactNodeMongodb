@@ -4,6 +4,6 @@
  */
 const CONSTANT = {
 	BASE_ADMIN_URL:'http://nodeapi.cc/admin/',
-	ADMIN_NAME:'管理后台'
+	ADMIN_NAME:'DMS4'
 }
 export default CONSTANT;
