@@ -7,6 +7,7 @@ import LoginM from './modules/login/login';
 import CONSTANT from './constant';
 import "./less/reset.less"
 
+
 class Login extends Component {
 
 	constructor(props) {

@@ -47,7 +47,8 @@ class ArticleManage extends Component {
 			<div style={{padding:"10px"}}>
 				<MarkEdit
 					onMarkChange={this.markChange.bind(this)}
-					input={this.state.markbody}></MarkEdit>
+					input={this.state.markbody}>
+				</MarkEdit>
 				<AdminArticleManage></AdminArticleManage>
 			</div>
 		)

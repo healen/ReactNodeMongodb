@@ -29,6 +29,7 @@
     "es6-promise": "^4.1.0",
     "isomorphic-fetch": "^2.2.1",
     "mditor": "^1.2.9",
+    "pygmentize-bundled": "^2.3.0",
     "react": "^15.4.1",
     "react-codemirror": "^0.3.0",
     "react-dom": "^15.4.1",

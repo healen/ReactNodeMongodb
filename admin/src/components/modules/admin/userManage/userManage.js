@@ -68,7 +68,7 @@ class AdminUserManage extends Component {
 		super(props);
 		this.state={
 			userList:[],
-			pageSize:3,
+			pageSize:10,
 			currentPage:1,
 			addUser:{
 				open:false,

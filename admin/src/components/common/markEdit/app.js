@@ -5,7 +5,34 @@
 import React,{Component} from 'react';
 import './style/iconfont.less';
 import './app.less'
+
+
+
 import marked from 'marked';
+
+var renderer = new marked.Renderer();
+
+renderer.code = function(code, lang) {
+    var language = lang && (' language-' + lang) || '';
+    return '<pre class="prettyprint' + language + '">'
+        + '<code>' + code.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</code>'
+        + '</pre>';
+};
+
+marked.setOptions({
+    renderer: renderer,
+    gfm: true,
+    tables: true,
+    breaks: true,
+    pedantic: false,
+    sanitize: false,
+    smartLists: true
+});
+
+
+
+
+
 
 export default class MarkEdit extends Component{
     renderTool(){
@@ -83,14 +110,42 @@ export default class MarkEdit extends Component{
                 </div>
             </div>
         )
-        console.log(editToolBar)
+        //console.log(editToolBar)
         return toolbar;
     }
+
+
+    /*
+    * 编辑器核心
+    * */
+    insertAtCursor(field,value,pos=0){
+        //IE support
+        if (document.selection) {
+            field.focus();
+            sel = document.selection.createRange();
+            sel.text = value;
+            sel.select();
+        }
+        //MOZILLA/NETSCAPE support
+        else if (field.selectionStart|| field.selectionStart == '0') {
+            let startPos = field.selectionStart;
+            let endPos = field.selectionEnd;
+            // save scrollTop before insert   www.keleyi.com
+            let restoreTop = field.scrollTop;
+            field.value = field.value.substring(0, startPos) + value + field.value.substring(endPos, field.value.length);
+            if (restoreTop > 0) {
+                field.scrollTop = restoreTop;
+            }
+            field.focus();
+            field.selectionStart = startPos + value.length;
+            field.selectionEnd = startPos + value.length + pos;
+        } else {
+            field.value += value;
+            field.focus();
+        }
+
+    }W
     render(){
-
-
-
-
         return (
             <div className="markedit">
                 {this.renderTool()}
@@ -105,7 +160,7 @@ export default class MarkEdit extends Component{
                     <div className="showArea">
                         <div
                             dangerouslySetInnerHTML={{__html:marked(this.props.input)}}
-                            className="show markdown"></div>
+                            className="show markdown-body"></div>
                     </div>
                 </div>
             </div>
@@ -113,11 +168,56 @@ export default class MarkEdit extends Component{
     }
 
     handleMarkChange(e){
-        var markString = e.target.value;
-        var htmlString = marked(markString);
+        let markString = e.target.value;
+        let htmlString = marked(markString);
         this.props.onMarkChange(markString,htmlString)
     }
     toolBtnEvent(todo){
-        alert(todo)
+        let field = this.refs.markEdit;
+        switch(todo){
+            case 'bold':
+                this.insertAtCursor(field,'**加粗**',-2);
+                break;
+            case 'italic':
+                this.insertAtCursor(field,'_倾斜_',-1);
+                break;
+            case 'h1':
+                this.insertAtCursor(field,'\n# 标题1',1);
+                break;
+            case 'h2':
+                this.insertAtCursor(field,'\n## 标题2',1);
+                break;
+            case 'h3':
+                this.insertAtCursor(field,'\n### 标题3',1);
+                break;
+            case 'link':
+                this.insertAtCursor(field,'[link](http://)',-1);
+                break;
+            case 'indent':
+                this.insertAtCursor(field,'\n> ',1);
+                break;
+
+            case 'code':
+                this.insertAtCursor(field,'\n ```js \n\n ``` ',-6);
+                break;
+
+            case 'image':
+                this.insertAtCursor(field,'\n![alt](http://)',-1);
+                break;
+
+            case 'olist':
+                this.insertAtCursor(field,'\n 1. 有序列表',1);
+                break;
+
+            case 'list':
+                this.insertAtCursor(field,'\n * 无序列表',1);
+                break;
+
+
+
+        }
+        let markString = field.value;
+        let htmlString = marked(markString);
+        this.props.onMarkChange(markString,htmlString);
     }
 }

@@ -41,7 +41,6 @@ const isAuth = (nextState,replace) => {
 		replace({pathname:'/login'})
 	}
 }
-
 /*
 * 路由配置
 * */

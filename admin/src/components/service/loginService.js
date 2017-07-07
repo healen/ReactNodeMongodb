@@ -10,6 +10,4 @@ export default (data) => {
 	return Promise;
 }
 
-	
-
 
