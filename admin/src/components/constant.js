@@ -4,6 +4,6 @@
  */
 const CONSTANT = {
 	BASE_ADMIN_URL:'http://nodeapi.cc/admin/',
-	ADMIN_NAME:'DMS4'
+	ADMIN_NAME:'Healen\'s Blog'
 }
 export default CONSTANT;

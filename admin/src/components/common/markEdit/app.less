@@ -1,17 +1,12 @@
-
-
-
-
-  ._animate(@num){
+ ._animate(@num){
     transition: all @num;
     -moz-transition: all @num; /* Firefox 4 */
     -webkit-transition: all @num; /* Safari 和 Chrome */
     -o-transition: all @num; /* Opera */
 
   }
-
 .markedit {
-
+  ._animate(.5s);
   position: relative;
   padding-top: 40px;
   height: 500px;
@@ -44,6 +39,7 @@
     float:left;
     border:1px solid #ddd;
     overflow: hidden;
+    min-height:460px;
     textarea{
       padding:10px;
       border:none;
@@ -57,7 +53,7 @@
     }
   }
   .showArea{
-    overflow: hidden;
+    overflow: auto;
     ._animate(.5s);
     border:1px solid #ccc;
     float:left;
@@ -66,6 +62,7 @@
     background: #f6f6f6;
     height:100%;
     overflow-x: auto;
+    min-height:460px;
     .show{
       padding:10px
     }

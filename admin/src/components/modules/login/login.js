@@ -20,7 +20,7 @@ class LoginM extends Component {
 	  };
 	}
 	/**
-	 * 
+	 *
 	 * 渲染视图
 	 */
 	render(){
@@ -32,20 +32,20 @@ class LoginM extends Component {
 				<label>
 					<div className="title">用户名：</div>
 					<div className="input">
-						<input type="text" 
-							onBlur={this.handleVert.bind(this)} 
+						<input type="text"
+							onBlur={this.handleVert.bind(this)}
 							onFocus={this.handleFocus.bind(this)}
-							onChange={(e)=>this.setState({userName:e.target.value})} 
+							onChange={(e)=>this.setState({userName:e.target.value})}
 							name='userName'/>
 					</div>
 				</label>
 				<label>
 					<div className="title">密码：</div>
 					<div className="input">
-						<input type="password" 
-							onBlur={this.handleVert.bind(this)} 
+						<input type="password"
+							onBlur={this.handleVert.bind(this)}
 							onFocus={this.handleFocus.bind(this)}
-							onChange={(e)=>this.setState({userPwd:e.target.value})} 
+							onChange={(e)=>this.setState({userPwd:e.target.value})}
 							name='userPwd'/>
 					</div>
 				</label>
@@ -55,13 +55,13 @@ class LoginM extends Component {
 
 				<label>
 					<div className="title"></div>
-					<button type="button" className="btn btn-primary" onClick={this.handleLogin.bind(this)} disabled={this.state.disabled}>提交</button>
+					<button type="button" className="btn btn-primary" onClick={this.handleLogin.bind(this)} disabled={this.state.disabled}>登陆</button>
 				</label>
 			</form>
 		)
 	}
-	
-	
+
+
 	/**
 	 * 用户响应
 	 * @return {[type]} [description]

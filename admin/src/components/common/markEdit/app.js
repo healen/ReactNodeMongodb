@@ -22,10 +22,9 @@ export default class MarkEdit extends Component{
     constructor(props){
         super(props);
         this.state={
-            zoom:false,
             editArea:'50%',
-            showArea:'50%'
-
+            showArea:'50%',
+            zoom:false
         }
     }
     renderTool(){
@@ -43,6 +42,8 @@ export default class MarkEdit extends Component{
                 {title:"倾斜",ico:'italic',line:true,todo:'italic'},
                 {title:"连接",ico:'link',line:false,todo:'link'},
                 {title:"缩进",ico:'indent',line:false,todo:'indent'},
+
+                {title:"缩进",ico:'table',line:false,todo:'table'},
                 {title:"代码",ico:'code',line:false,todo:'code'},
                 {title:"图片",ico:'image',line:true,todo:'image'},
                 {title:"有序列表",ico:'olist',line:false,todo:'olist'},
@@ -139,9 +140,9 @@ export default class MarkEdit extends Component{
 
     }
     render(){
-        let zoomclass = this.state.zoom?'markedit zoom':'markedit';
+        let zoom = this.state.zoom?'zoom':''
         return (
-            <div className={zoomclass} >
+            <div className={`markedit ${zoom}`}>
                 {this.renderTool()}
                 <div className="markBody">
                     <div className="editArea" style={{width:this.state.editArea}}>
@@ -191,6 +192,19 @@ export default class MarkEdit extends Component{
                 this.insertAtCursor(field,'\n> ',1);
                 break;
 
+            case 'table':
+                let table = "\n栏目1 | 栏目2 | 栏目3\n";
+                    table+="------- | ------- | -------\n";
+                    table+="内容1 | 内容2 | 内容3\n";
+                    table+="内容1 | 内容2 | 内容3\n";
+                    table+="内容1 | 内容2 | 内容3\n";
+                    table+="内容1 | 内容2 | 内容3\n";
+
+                this.insertAtCursor(field,table,1);
+                break;
+
+
+
             case 'code':
                 this.insertAtCursor(field,'\n ```js \n\n```',-4);
                 break;
@@ -210,7 +224,9 @@ export default class MarkEdit extends Component{
             case 'zoom':
                 this.setState({
                     zoom:!this.state.zoom
-                })
+                });
+
+
                 //alert(1)
                 break;
             case 'edit':

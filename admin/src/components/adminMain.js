@@ -21,7 +21,7 @@ class Admin extends Component {
 	render(){
 		return (
 			<div className="adminContent">
-				<AdminHead pageTitle={this.state.pageTitle} userName={getCurrentUser().userName}></AdminHead>
+				<AdminHead pageTitle={this.state.pageTitle+' 后台管理系统'} userName={getCurrentUser().userName}></AdminHead>
 				<div className="contantBox">
 					<AdminAside></AdminAside>
 					{this.props.children}
@@ -31,7 +31,7 @@ class Admin extends Component {
 	}
 	componentDidMount() {
       window.document.title=this.state.pageTitle;
-      
+
     }
 }
 export {Admin};

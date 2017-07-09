@@ -72,7 +72,7 @@ class AdminUserManage extends Component {
 			currentPage:1,
 			addUser:{
 				open:false,
-				title:'添加用户'
+				title:'添加管理员'
 			},
 			deleteUser:{
 				open:false,
@@ -97,7 +97,7 @@ class AdminUserManage extends Component {
 				<div className="pageTitle">
 					<button className="btn btn-primary"
 							onClick={this.handleAddUser.bind(this,this.state.addUser)}>
-						添加用户
+						添加管理员
 					</button>
 				</div>
 				<div className="listContent">
@@ -108,7 +108,7 @@ class AdminUserManage extends Component {
 								<th>用户名</th>
 								<th>密码</th>
 								<th>用户ID</th>
-								<th width='160'>操作</th>
+								<th width='200'>操作</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -127,7 +127,7 @@ class AdminUserManage extends Component {
 												&nbsp;
 											<button type="button"
 													onClick={me.deleteUser.bind(me,value._id,value.userName)}
-													className="btn btn-danger btn-sm">删除用户</button>
+													className="btn btn-danger btn-sm">删除管理员</button>
 										</td>
 									</tr>
 								)

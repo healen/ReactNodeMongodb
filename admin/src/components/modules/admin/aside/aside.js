@@ -12,7 +12,7 @@ class AdminAside extends Component {
 
 
 					 <Link to='/admin/Manage' activeClassName='active'>平台首页</Link>
-					 <Link to='/admin/userManage' activeClassName='active'>会员管理</Link>
+					 <Link to='/admin/userManage' activeClassName='active'>管理员管理</Link>
 					 <Link to='/admin/articleManage' activeClassName='active'>文章管理</Link>
 
 
