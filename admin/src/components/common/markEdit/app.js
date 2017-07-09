@@ -6,35 +6,28 @@ import React,{Component} from 'react';
 import './style/iconfont.less';
 import './app.less'
 
-
-
 import marked from 'marked';
-
-var renderer = new marked.Renderer();
-
-renderer.code = function(code, lang) {
-    var language = lang && (' language-' + lang) || '';
-    return '<pre class="prettyprint' + language + '">'
-        + '<code>' + code.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</code>'
-        + '</pre>';
-};
+import highlight from 'highlight.js'
 
 marked.setOptions({
-    renderer: renderer,
-    gfm: true,
-    tables: true,
-    breaks: true,
-    pedantic: false,
-    sanitize: false,
-    smartLists: true
+    highlight: function (code) {
+        return highlight.highlightAuto(code).value;
+    }
 });
 
 
 
 
-
-
 export default class MarkEdit extends Component{
+    constructor(props){
+        super(props);
+        this.state={
+            zoom:false,
+            editArea:'50%',
+            showArea:'50%'
+
+        }
+    }
     renderTool(){
         /*
         * 定义一些初始化变量
@@ -144,20 +137,21 @@ export default class MarkEdit extends Component{
             field.focus();
         }
 
-    }W
+    }
     render(){
+        let zoomclass = this.state.zoom?'markedit zoom':'markedit';
         return (
-            <div className="markedit">
+            <div className={zoomclass} >
                 {this.renderTool()}
                 <div className="markBody">
-                    <div className="editArea">
+                    <div className="editArea" style={{width:this.state.editArea}}>
                         <textarea
                             ref="markEdit"
                             onChange={this.handleMarkChange.bind(this)}
                             defaultValue={this.props.input}>
                         </textarea>
                     </div>
-                    <div className="showArea">
+                    <div className="showArea" style={{width:this.state.showArea}}>
                         <div
                             dangerouslySetInnerHTML={{__html:marked(this.props.input)}}
                             className="show markdown-body"></div>
@@ -198,7 +192,7 @@ export default class MarkEdit extends Component{
                 break;
 
             case 'code':
-                this.insertAtCursor(field,'\n ```js \n\n ``` ',-6);
+                this.insertAtCursor(field,'\n ```js \n\n```',-4);
                 break;
 
             case 'image':
@@ -213,8 +207,50 @@ export default class MarkEdit extends Component{
                 this.insertAtCursor(field,'\n * 无序列表',1);
                 break;
 
+            case 'zoom':
+                this.setState({
+                    zoom:!this.state.zoom
+                })
+                //alert(1)
+                break;
+            case 'edit':
+                if(this.state.editArea=="50%"){
+
+                    this.setState({
+                        editArea:"100%",
+                        showArea:'0px'
+                    })
+
+                }else{
+                    this.setState({
+                        editArea:"50%",
+                        showArea:'50%'
+                    })
+
+                }
+                break;
+            case 'column':
+                    this.setState({
+                        editArea:"50%",
+                        showArea:'50%'
+                    })
+                break;
 
 
+            case 'eye':
+                if(this.state.showArea=="50%"){
+                    this.setState({
+                        editArea:"0px",
+                        showArea:'99.8%'
+                    })
+                }else{
+                    this.setState({
+                        editArea:"50%",
+                        showArea:'50%'
+                    })
+
+                }
+                break;
         }
         let markString = field.value;
         let htmlString = marked(markString);
